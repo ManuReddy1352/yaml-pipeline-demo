@@ -1,11 +1,14 @@
-name: My First Pipeline
+name: Docker Build Pipeline
 
 on: push
 
 jobs:
-  hello-job:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print message
-        run: echo "Hello from GitHub pipeline!"
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t devops-demo .
